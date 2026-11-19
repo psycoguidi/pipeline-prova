@@ -1,0 +1,21 @@
+on:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read #autorizza a leggere il contenuto del repository
+  pages: write
+  id-token: write
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/upload-pages-artifact@v3
+        with:
+         path: .
+      - uses: actions/deploy-pages@v4
